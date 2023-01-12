@@ -1,0 +1,29 @@
+{% extends 'main.html.twig' %}
+
+{% block main %}
+{#<section id="login">
+	<h2 class="move-over">Log In</h2>
+	{{ form_start(form) }}
+		<div class="errors">
+			{{ form_errors(form) }}
+		</div>
+		<div class="input-group margin-bottom-sm">
+		  	<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+		  	{{ form_widget(form.username) }}
+		</div>
+		<div class="input-group">
+		  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+		  	{{ form_widget(form.password) }}
+		</div>
+		{{ form_row(form.save) }}
+		<input class="btn signin-btn" type="submit" value="Sign Me In!">
+	</form>
+</section>#}
+<section id="home">
+<h2>Let's get organized!</h2>
+<p>R u ready?</p>
+<input class="btn signin-btn" type="submit" value="Let's Get Started!" onclick="window.location='{{ path('app_login') }}'">
+<p>OR</p>
+<input class="btn signin-btn" type="submit" value="Register Today!" onclick="window.location='{{ path('app_register') }}'">
+</section>
+{% endblock %}

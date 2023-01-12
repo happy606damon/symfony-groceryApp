@@ -1,0 +1,27 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block main %}
+<section id="register">
+    <h2 class="move-over">Register for Grocery.Me</h2>
+    {{ form_start(registrationForm) }}
+        <div class="errors">
+            {{ form_errors(registrationForm) }}
+        </div>
+        <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+            {{ form_widget(registrationForm.username) }}
+        </div>
+        <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+            {{ form_widget(registrationForm.email) }}
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+            {{ form_widget(registrationForm.plainPassword) }}
+        </div>
+        <input class="btn register-btn" type="submit" value="Register Me!">
+    {{ form_end(registrationForm) }}
+</section>
+{% endblock %}
