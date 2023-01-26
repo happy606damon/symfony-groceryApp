@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -31,6 +33,14 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Item::class)]
+    private Collection $name;
+
+    public function __construct()
+    {
+        $this->name = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,5 +122,35 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Item>
+     */
+    public function getName(): Collection
+    {
+        return $this->name;
+    }
+
+    public function addName(Item $name): self
+    {
+        if (!$this->name->contains($name)) {
+            $this->name->add($name);
+            $name->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeName(Item $name): self
+    {
+        if ($this->name->removeElement($name)) {
+            // set the owning side to null (unless already changed)
+            if ($name->getClient() === $this) {
+                $name->setClient(null);
+            }
+        }
+
+        return $this;
     }
 }

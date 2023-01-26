@@ -4,8 +4,12 @@
 		<h1>Grocery.Me</h1>
 		<h3>Organized. Simple. Mine.</h3>
 	</div>
-	<!--<nav>
-		<h3 id="top-nav"><a href="#">Login</a> <span>|</span> <a href="#">Register</a></h3>
-	</nav>-->
+	<nav>
+		{% if app.user %}
+		    <h3 id="top-nav">
+		    	<span>You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a></span>
+		    </h3>
+		{% endif %}
+	</nav>
 	</div>
 </header>

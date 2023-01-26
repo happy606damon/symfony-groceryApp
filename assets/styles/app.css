@@ -1,5 +1,8 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,700;1,400;1,700&family=League+Gothic&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
     margin: 0;
     padding: 0;
@@ -45,8 +48,8 @@ main {
 
 footer {
     background-color: rgba(126, 123, 124, 0.8);
-    height: 200px;
-    position: absolute;
+    height: 170px;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -85,12 +88,12 @@ h2 {
     }
 
 #top-nav {
-    margin-top: 30%;
-    font-size: 150%;
+    /* margin-top: 30%;
+    font-size: 150%; */
 }
 
-    h3 span {
-        font-size: 200%;
+    #top-nav h3 span {
+        /* font-size: 200%; */
     }
 
 #home,
@@ -190,7 +193,8 @@ footer h4 {
         width: 60%;
         margin-bottom: 1%;
     }
-    #intro-text {
+    #intro-text,
+    nav {
         float: none;
     }
 
@@ -218,16 +222,13 @@ footer h4 {
     }
 
     footer {
-    background-color: rgba(126, 123, 124, 0.8);
-    height: 150px;
-    position: static;
-    width: 100%;
-    clear: both;
+        clear: both;
     }
 }
 
 @media only screen and (max-width: 610px) and (min-width: 400px) {
-    #intro-text {
+    #intro-text,
+    nav {
         float: none;
     }
 
@@ -260,11 +261,7 @@ footer h4 {
     }
 
     footer {
-    background-color: rgba(126, 123, 124, 0.8);
-    height: 150px;
-    position: static;
-    width: 100%;
-    clear: both;
+        clear: both;
     }
 }
 
