@@ -1,8 +1,9 @@
-require('bootstrap-datepicker/js/bootstrap-datepicker.js');
 require('bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
+require('bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');
 $(document).ready(function() {
-    $('.js-datepicker').datepicker({
+    $('.datepicker').datepicker({
         format: "yyyy-mm-dd",
-        startView: "months",
+        orientation: "bottom left",
+        todayHighlight: true
     });
 });

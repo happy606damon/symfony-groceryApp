@@ -3,9 +3,13 @@
 {% block title %}New Item{% endblock %}
 
 {% block main %}
-    <h1>Create new Item</h1>
+<div class="px-8 py-4">
+
+    <div class="flex flex-row items-center py-3">   
+        <h1 class="text-4xl font-normal leading-normal basis-3/4">Create new Item</h1>
+        <a class="bg-transparent hover:bg-blue-600 text-blue-600 font-semibold hover:text-white py-2 px-4 border-solid border-blue-600 basis-1/4 h-1/5 text-center text-xl" href="{{ path('app_item_index') }}">Back to Item List</a>
+    </div>
 
     {{ include('item/_form.html.twig') }}
-
-    <a href="{{ path('app_item_index') }}">back to list</a>
+</div>    
 {% endblock %}

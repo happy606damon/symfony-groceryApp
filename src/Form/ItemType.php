@@ -15,16 +15,18 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextType::class)
-            ->add('priority', TextType::class)
+            ->add('name', TextType::class, ['label' => 'Name', 'attr' => ['class' => 'item-form-input']])
+            ->add('description', TextType::class, ['label' => 'Description', 'attr' => ['class' => 'item-form-input']])
+            ->add('priority', TextType::class, ['label' => 'Priority', 'attr' => ['class' => 'item-form-input']])
             ->add('create_date', DateTimeType::class, array(
                     'widget' => 'single_text',
                     'html5' => false,
-                    //'format' => 'yyyy-mm-dd',
+                    'format' => 'yyyy-mm-dd',
                     'attr' => [
-                        'class' => 'js-datepicker',
-                    ],
+                        'class' => 'item-form-input form-control input-inline datepicker',
+                        'data-provide' => 'datepicker',
+                        'data-date-format' => 'yyyy-mm-dd'
+                    ]
                 ))
             //->add('updated_at', DateTimeType::class)
             ->add('client', HiddenType::class, array(

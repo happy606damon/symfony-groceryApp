@@ -3,8 +3,11 @@
 {% block title %}Item index{% endblock %}
 
 {% block main %}
-<div class="px-8 py-4">    
-    <h1>Item List</h1>
+<div class="px-8 py-4"> 
+    <div class="flex flex-row items-center py-3">   
+        <h1 class="text-4xl font-normal leading-normal basis-3/4">Item List</h1>
+        <a class="bg-transparent hover:bg-blue-600 text-blue-600 font-semibold hover:text-white py-2 px-4 border-solid border-blue-600 basis-1/4 h-1/5 text-center text-xl" href="{{ path('app_item_new') }}">Add <i class="fa-solid fa-circle-plus text-2xl"></i></a>
+    </div>
 
     <table class="shadow-lg bg-white border-collapse w-full">
         <thead class="text-base border text-left bg-blue-100">
@@ -37,7 +40,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_item_new') }}">Create new</a>
 </div>    
 {% endblock %}
