@@ -14,10 +14,6 @@ class Item
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'name')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Client $client = null;
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -30,21 +26,13 @@ class Item
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $create_date = null;
 
+    #[ORM\ManyToOne(inversedBy: 'items')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -91,6 +79,18 @@ class Item
     public function setCreateDate(?\DateTimeInterface $create_date): self
     {
         $this->create_date = $create_date;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }

@@ -23,14 +23,10 @@ class ItemType extends AbstractType
                     'html5' => false,
                     'format' => 'yyyy-mm-dd',
                     'attr' => [
-                        'class' => 'item-form-input form-control input-inline datepicker',
-                        'data-provide' => 'datepicker',
-                        'data-date-format' => 'yyyy-mm-dd'
+                        'class' => 'item-form-input created-form-control input-inline',
                     ]
                 ))
             //->add('updated_at', DateTimeType::class)
-            ->add('client', HiddenType::class, array(
-            'data' => $options['user']))
         ;
     }
 
@@ -38,9 +34,6 @@ class ItemType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Item::class,
-            'user' => null
         ]);
-
-        $resolver->setAllowedTypes('user', 'int');
     }
 }

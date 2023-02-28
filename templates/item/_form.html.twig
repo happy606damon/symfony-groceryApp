@@ -34,10 +34,8 @@
       {{ form_widget(form.create_date) }}
       </div>
     </div>
-    {{ form_widget(form.client) }}
-    <input type="hidden" name="_csrf_token"
-      value="{{ csrf_token('authenticate') }}"
-    >
+    {#{{ form_widget(form.client) }}#}
+    {{ form_rest(form) }}
     <div class="md:flex md:items-center">
       <div class="md:w-2/3">
         <button class="bg-transparent hover:bg-blue-600 text-blue-600 font-semibold hover:text-white py-2 px-4 border-solid border-blue-600 basis-1/4 h-1/5 text-center text-xl">{{ button_label|default('Save') }}</button>

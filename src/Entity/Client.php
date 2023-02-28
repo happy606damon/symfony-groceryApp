@@ -35,11 +35,11 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Item::class)]
-    private Collection $name;
+    private Collection $items;
 
     public function __construct()
     {
-        $this->name = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,27 +127,27 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Item>
      */
-    public function getName(): Collection
+    public function getItems(): Collection
     {
-        return $this->name;
+        return $this->items;
     }
 
-    public function addName(Item $name): self
+    public function addItem(Item $item): self
     {
-        if (!$this->name->contains($name)) {
-            $this->name->add($name);
-            $name->setClient($this);
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setClient($this);
         }
 
         return $this;
     }
 
-    public function removeName(Item $name): self
+    public function removeItem(Item $item): self
     {
-        if ($this->name->removeElement($name)) {
+        if ($this->items->removeElement($item)) {
             // set the owning side to null (unless already changed)
-            if ($name->getClient() === $this) {
-                $name->setClient(null);
+            if ($item->getClient() === $this) {
+                $item->setClient(null);
             }
         }
 

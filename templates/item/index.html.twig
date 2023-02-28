@@ -29,7 +29,7 @@
                 <td class="border px-8 py-4">{{ item.priority }}</td>
                 <td class="border px-8 py-4">{{ item.createDate ? item.createDate|date('Y-m-d') : '' }}</td>
                 <td class="border px-8 py-4">
-                    <a href="{{ path('app_item_show', {'id': item.id}) }}">show</a>
+                    {#<a href="{{ path('app_item_show', {'id': item.id}) }}">show</a>#}
                     <a href="{{ path('app_item_edit', {'id': item.id}) }}">edit</a>
                 </td>
             </tr>

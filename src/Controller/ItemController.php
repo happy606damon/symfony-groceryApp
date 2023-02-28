@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Item;
 use App\Form\ItemType;
 use App\Entity\Client;
+use App\Repository\ClientRepository;
 use App\Repository\ItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,14 +34,17 @@ class ItemController extends AbstractController
     }
 
     #[Route('/new', name: 'app_item_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ItemRepository $itemRepository): Response
+    public function new(Request $request, ItemRepository $itemRepository, ClientRepository $clientRepository): Response
     {
         $item = new Item();
-        $form = $this->createForm(ItemType::class, $item, array('user' => $this->getUser()->getId() )
+        $form = $this->createForm(ItemType::class, $item 
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $client = $clientRepository->find($this->getUser()->getId());
+            $item->setClient($client);
+            $clientRepository->save($client, true);
             $itemRepository->save($item, true);
 
             return $this->redirectToRoute('app_item_index', [], Response::HTTP_SEE_OTHER);
@@ -52,13 +56,13 @@ class ItemController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_item_show', methods: ['GET'])]
-    public function show(Item $item): Response
-    {
-        return $this->render('item/show.html.twig', [
-            'item' => $item,
-        ]);
-    }
+    // #[Route('/{id}', name: 'app_item_show', methods: ['GET'])]
+    // public function show(Item $item): Response
+    // {
+    //     return $this->render('item/show.html.twig', [
+    //         'item' => $item,
+    //     ]);
+    // }
 
     #[Route('/{id}/edit', name: 'app_item_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Item $item, ItemRepository $itemRepository): Response
